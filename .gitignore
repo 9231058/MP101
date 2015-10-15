@@ -1,3 +1,7 @@
+# Proteus files
+*.pdsbak
+*.workspace
+
 # Object files
 *.o
 *.ko
