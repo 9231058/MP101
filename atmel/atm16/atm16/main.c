@@ -11,7 +11,7 @@
 
 int main(void)
 {
-    /* Replace with your application code */
+    /* Set port C direction */
     DDRC = 0x00;
 	while (1) 
     {
