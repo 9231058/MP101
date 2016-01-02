@@ -6,3 +6,5 @@ show how to use external intrrupt INT1 and PORTD.
 ### LED ON OFF
 LED D1 turn on and off in 1024 times in seconds, this project
 show how to use timer counter 0 in normal mode.
+### WAVE
+PWD wave created in inverted PWD Fast mode of timer counter 0.
