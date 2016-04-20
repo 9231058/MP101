@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.57  Z:\Documents\Git\parham\ATMega16\src\wave\wave\main.asm Wed Apr 20 11:53:46 2016
+AVRASM ver. 2.1.57  Z:\Documents\Git\parham\ATMega16\src\wave2\wave2\main.asm Wed Apr 20 11:28:18 2016
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.90\avrasm\inc\m16def.inc'
                  
@@ -878,40 +878,41 @@ AVRASM ver. 2.1.57  Z:\Documents\Git\parham\ATMega16\src\wave\wave\main.asm Wed 
                  
                  .org $000
                  reset_label:
-000000 940c 0014 	jmp reset_isr
-                 .org $012
-                 tov0_label:
-000012 940c 0021 	jmp tov0_isr 
+000000 940c 0028 	jmp reset_isr
+                 .org $026
+                 tcp0_label:
+000026 940c 0035 	jmp tcp0_isr 
                  reset_isr:
-000014 94f8      	cli
-000015 e50f      	ldi r16 , LOW(RAMEND) 
-000016 bf0d      	out SPL , r16 
-000017 e004      	ldi r16 , HIGH(RAMEND)
-000018 bf0e      	out SPH , r16
-                 	; Enabling timer counter 0 overflow interrupt
-000019 e001      	ldi r16, (1<<TOIE0)
-00001a bf09      	out TIMSK, r16
+000028 94f8      	cli
+000029 e50f      	ldi r16 , LOW(RAMEND) 
+00002a bf0d      	out SPL , r16 
+00002b e004      	ldi r16 , HIGH(RAMEND)
+00002c bf0e      	out SPH , r16
+                 	; Enabling timer counter 0 compare match interrupt
+00002d e002      	ldi r16, (1<<OCIE0)
+00002e bf09      	out TIMSK, r16
                  	; PB3 --> output
-00001b e008      	ldi r16, (1<<PB3)
-00001c bb07      	out DDRB, r16
+00002f e008      	ldi r16, (1<<PB3)
+000030 bb07      	out DDRB, r16
                  	; Enabling timer counter 0 with 1024 prescaling
-00001d ef0f      	ldi r16, $ff
-00001e bf0c      	out OCR0, r16
-00001f e70b      	ldi r16, (0<<CS02) | (1<<CS01) | (1<<CS00) | (1<<WGM01) | (1<<WGM00) | (1<<COM00) | (1<<COM01) 
-000020 bf03      	out TCCR0, r16
-                 tov0_isr:
-000021 94f8      	cli
-000022 b70c      	in r16, OCR0
-000023 3000      	cpi r16, 0
-000024 f019      	breq tov0_isr_reset
-                 tov0_isr_dec:
-000025 500f      	subi r16, $0f
-000026 940c 0029 	jmp tov0_isr_store
-                 tov0_isr_reset:
-000028 ef0f      	ldi r16, $ff
-                 tov0_isr_store:
-000029 bf0c      	out OCR0, r16
-00002a 9478      	sei
+                 	; CTC Mode
+000031 ef0f      	ldi r16, $ff
+000032 bf0c      	out OCR0, r16
+000033 e10d      	ldi r16, (1<<CS02) | (1<<CS00) | (1<<WGM01) | (0<<WGM00) | (1<<COM00) | (0<<COM01) 
+000034 bf03      	out TCCR0, r16
+                 tcp0_isr:
+000035 94f8      	cli
+000036 b70c      	in r16, OCR0
+000037 3000      	cpi r16, 0
+000038 f019      	breq tcp0_isr_reset
+                 tcp0_isr_dec:
+000039 500f      	subi r16, $0f
+00003a 940c 003d 	jmp tcp0_isr_store
+                 tcp0_isr_reset:
+00003c ef0f      	ldi r16, $ff
+                 tcp0_isr_store:
+00003d bf0c      	out OCR0, r16
+00003e 9478      	sei
                  start:
 
 
@@ -962,7 +963,7 @@ Instructions used: 9 out of 113 (8.0%)
 "ATmega16" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x00005a     58      0     58   16384   0.4%
+[.cseg] 0x000000 0x000082     58      0     58   16384   0.4%
 [.dseg] 0x000060 0x000060      0      0      0    1024   0.0%
 [.eseg] 0x000000 0x000000      0      0      0     512   0.0%
 

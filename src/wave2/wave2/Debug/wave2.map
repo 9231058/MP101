@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.57  Z:\Documents\Git\parham\ATMega16\src\wave\wave\main.asm Wed Apr 20 11:53:46 2016
+AVRASM ver. 2.1.57  Z:\Documents\Git\parham\ATMega16\src\wave2\wave2\main.asm Wed Apr 20 11:28:18 2016
 
 
 EQU  SIGNATURE_000 0000001e
@@ -605,10 +605,10 @@ EQU  OC0addr      00000026
 EQU  SPMRaddr     00000028
 EQU  INT_VECTORS_SIZE 0000002a
 CSEG reset_label  00000000
-CSEG reset_isr    00000014
-CSEG tov0_label   00000012
-CSEG tov0_isr     00000021
-CSEG tov0_isr_reset 00000028
-CSEG tov0_isr_dec 00000025
-CSEG tov0_isr_store 00000029
-CSEG start        0000002b
+CSEG reset_isr    00000028
+CSEG tcp0_label   00000026
+CSEG tcp0_isr     00000035
+CSEG tcp0_isr_reset 0000003c
+CSEG tcp0_isr_dec 00000039
+CSEG tcp0_isr_store 0000003d
+CSEG start        0000003f
