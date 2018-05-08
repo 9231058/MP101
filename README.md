@@ -12,3 +12,6 @@ show how to use timer counter 0 in normal mode.
 
 ### WAVE
 PWM wave created in inverted Fast PWM by timer counter 0.
+
+## EPWrite
+Reads a string from program memory and write it into EEPROM.
