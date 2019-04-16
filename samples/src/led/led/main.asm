@@ -6,10 +6,13 @@
 ;
 
 
+; reset handler
+; it is called on AVR reset
 .org 0x0000
 reset_label:
 	rjmp reset_isr
 
+; interrupt 1 handler
 .org 0x0004
 int1_label:
 	rjmp int1_isr 
