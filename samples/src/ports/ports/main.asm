@@ -10,7 +10,7 @@
 jmp start
 
 start:
-	; tri-state input
+	; pulled-up input
 	ldi r16, (0 << PORTD0)
 	out PORTD, r16
 
